@@ -32,6 +32,10 @@ public class MainActivity extends AppCompatActivity {
         items.add(new Item("Sourdough",R.drawable.sourdough));
         items.add(new Item("Napoletana",R.drawable.napoletana));
         items.add(new Item("Romana",R.drawable.romana));
+        items.add(new Item("New-York Styled",R.drawable.newyork));
+        items.add(new Item("Capsicum Onion",R.drawable.capsicum));
+        items.add(new Item("Cheese Burst",R.drawable.chebusrt));
+
 
 
         rc.setLayoutManager(new LinearLayoutManager(this));
