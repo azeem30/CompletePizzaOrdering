@@ -14,7 +14,12 @@ public class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
     Context context;
     List<Item> items;
 
+public void setfl(List<Item> fl)
+{
+   this.items = fl;
+   notifyDataSetChanged();
 
+}
 
     public MyAdapter(Context context, List<Item> items) {
         this.context = context;

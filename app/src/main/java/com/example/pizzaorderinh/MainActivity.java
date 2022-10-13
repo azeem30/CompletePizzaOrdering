@@ -13,16 +13,31 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
 
-
+     List<Item> items;
+     MyAdapter ma;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        SearchView sv =findViewById(R.id.search);
+        sv.clearFocus();
+        sv.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return true;
+            }
 
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                filterList(newText);
+                return true;
+            }
+        });
         RecyclerView rc = findViewById(R.id.recycle);
         List<Item> items = new ArrayList<>();
         items.add(new Item("Pissaladiere",R.drawable.pissaladiere));
@@ -42,6 +57,25 @@ public class MainActivity extends AppCompatActivity {
         rc.setAdapter(new MyAdapter(getApplicationContext(),items));
 
 
+    }
+
+    private void filterList(String text) {
+        List<Item> fl = new ArrayList<>();
+        for(Item item: items)
+        {
+            if(item.getPizza().toLowerCase().contains(text.toLowerCase()))
+            {
+                fl.add(item);
+            }
+            if(fl.isEmpty())
+            {
+                Toast.makeText(this, "NO DATA FOUND", Toast.LENGTH_SHORT).show();
+            }
+            else
+            {
+                ma.setfl(fl);
+            }
+        }
     }
 
 

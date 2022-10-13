@@ -1,63 +1,34 @@
 {
   "project_info": {
-    "project_number": "870033059128",
-    "firebase_url": "https://pizzaorder-36d95-default-rtdb.firebaseio.com",
-    "project_id": "pizzaorder-36d95",
-    "storage_bucket": "pizzaorder-36d95.appspot.com"
+    "project_number": "530491557703",
+    "firebase_url": "https://pizzaordering-22e27-default-rtdb.firebaseio.com",
+    "project_id": "pizzaordering-22e27",
+    "storage_bucket": "pizzaordering-22e27.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:870033059128:android:52c9d8455d57a802d1e5cd",
-        "android_client_info": {
-          "package_name": "com.example.pizzaorder"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "870033059128-et0fqtn5dko5ehhsit0b17iboc573s2f.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyANYhc8NE8qJzuhRpXDj5Q-NmIBzgO2K3g"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "870033059128-et0fqtn5dko5ehhsit0b17iboc573s2f.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:870033059128:android:3c0654063d5e3733d1e5cd",
+        "mobilesdk_app_id": "1:530491557703:android:374fc7d6d195fee731ae62",
         "android_client_info": {
           "package_name": "com.example.pizzaorderinh"
         }
       },
       "oauth_client": [
         {
-          "client_id": "870033059128-et0fqtn5dko5ehhsit0b17iboc573s2f.apps.googleusercontent.com",
+          "client_id": "530491557703-1c0plrg3rf27mrlme8ru4vcdkr91uc60.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyANYhc8NE8qJzuhRpXDj5Q-NmIBzgO2K3g"
+          "current_key": "AIzaSyAqRNaBcHODwOJ-vc-1a2fsyC96wNB4Ir0"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "870033059128-et0fqtn5dko5ehhsit0b17iboc573s2f.apps.googleusercontent.com",
+              "client_id": "530491557703-1c0plrg3rf27mrlme8ru4vcdkr91uc60.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

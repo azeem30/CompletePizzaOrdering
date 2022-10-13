@@ -2,15 +2,15 @@ package com.example.pizzaorderinh;
 
 public class Item {
 
-    String pizza;
-    int img;
+     String pizza;
+     int img;
 
     public Item(String pizza, int img) {
-        this.pizza= pizza;
+        this.pizza = pizza;
         this.img = img;
     }
 
-    public String getPizza() {
+    public  String getPizza() {
         return pizza;
     }
 
@@ -18,7 +18,7 @@ public class Item {
         this.pizza = pizza;
     }
 
-    public int getImg() {
+    public  int getImg() {
         return img;
     }
 
