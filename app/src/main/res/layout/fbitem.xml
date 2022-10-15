@@ -2,14 +2,14 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/lay"
+    android:id="@+id/layouts"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginTop="10dp"
     android:background="@color/black">
 
     <ImageView
-        android:id="@+id/image1"
+        android:id="@+id/fImage"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_marginRight="10dp"
@@ -17,11 +17,11 @@
         />
 
     <TextView
-        android:id="@+id/textview1"
+        android:id="@+id/fText"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:textColor="@color/white"
-        android:layout_toEndOf="@id/image1"
+        android:layout_toEndOf="@id/fImage"
         android:textStyle="bold"
         android:fontFamily="casual"
         android:textSize="24dp"
@@ -30,7 +30,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="2dp"
-        android:layout_below="@+id/image1"
+        android:layout_below="@+id/fImage"
         android:layout_marginTop="-2dp"
         android:background="@color/black">
 

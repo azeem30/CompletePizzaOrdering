@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -22,7 +23,7 @@ public class Login extends AppCompatActivity {
 FirebaseAuth mAuth;
 FirebaseUser user;
     EditText em,pa;
-    Button l;
+    Button l,sig;
     ProgressDialog pd1;
     String emailpattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
 
@@ -36,6 +37,20 @@ FirebaseUser user;
         em = findViewById(R.id.emailid);
         pa = findViewById(R.id.password);
         l = findViewById(R.id.log);
+        sig = findViewById(R.id.sign);
+
+        l.setPaintFlags(l.getPaintFlags()| Paint.UNDERLINE_TEXT_FLAG);
+        sig.setPaintFlags(sig.getPaintFlags()| Paint.UNDERLINE_TEXT_FLAG);
+
+
+        sig.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent signKaro = new Intent(Login.this,Signup.class);
+                startActivity(signKaro);
+            }
+        });
+
 
         l.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,7 +99,7 @@ FirebaseUser user;
     }
 
     private void sendUsertonextactivity2() {
-        Intent in = new Intent(Login.this,MainActivity.class);
+        Intent in = new Intent(Login.this,NewRecycler.class);
         in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(in);
     }
