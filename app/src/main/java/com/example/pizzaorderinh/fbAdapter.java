@@ -30,8 +30,8 @@ public class fbAdapter extends FirebaseRecyclerAdapter<fbItem,fbAdapter.fbViewHo
     @NonNull
     @Override
     public fbViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-View nazaara = LayoutInflater.from(parent.getContext()).inflate(R.layout.fbitem,parent,false);
-return new fbViewHolder(nazaara);
+      View nazaara = LayoutInflater.from(parent.getContext()).inflate(R.layout.fbitem,parent,false);
+      return new fbViewHolder(nazaara);
     }
 
     class fbViewHolder extends RecyclerView.ViewHolder
