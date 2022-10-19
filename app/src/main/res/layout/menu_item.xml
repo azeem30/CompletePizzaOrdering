@@ -6,6 +6,7 @@
     app:cardCornerRadius="20dp"
     android:elevation="8dp"
     app:cardUseCompatPadding="true"
+  android:background="@drawable/border"
     >
     <RelativeLayout
         android:layout_width="match_parent"

@@ -1,5 +1,6 @@
 package com.example.pizzaorderinh;
 
+import android.graphics.Paint;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -59,6 +60,7 @@ this.pgPrice=pgPrice;
         TextView detT1 = view.findViewById(R.id.detText1);
         TextView detT2 = view.findViewById(R.id.detText2);
         Button order = view.findViewById(R.id.addOrder);
+        order.setPaintFlags(order.getPaintFlags()| Paint.UNDERLINE_TEXT_FLAG);
         detT1.setText(pgName);
         detT2.setText(pgPrice);
         Glide.with(getContext()).load(pgImage).into(detI);

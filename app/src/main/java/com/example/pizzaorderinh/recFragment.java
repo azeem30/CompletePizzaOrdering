@@ -1,26 +1,46 @@
 package com.example.pizzaorderinh;
 
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.bumptech.glide.load.resource.bitmap.RecyclableBufferedInputStream;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
+import org.checkerframework.checker.units.qual.A;
+
+import java.util.Objects;
 
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link recFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class recFragment extends Fragment {
+public class recFragment extends Fragment{
+
+FirebaseDatabase fb = FirebaseDatabase.getInstance();
+DatabaseReference db = fb.getReference().child("menuPizzas");
+
+
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -56,7 +76,9 @@ public class recFragment extends Fragment {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
@@ -74,7 +96,7 @@ public class recFragment extends Fragment {
 
         FirebaseRecyclerOptions<menuItem> options =
                 new FirebaseRecyclerOptions.Builder<menuItem>()
-                        .setQuery(FirebaseDatabase.getInstance().getReference().child("menuPizzas"), menuItem.class)
+                        .setQuery(db, menuItem.class)
                         .build();
         ma = new menuAdapter(options);
         mRec.setAdapter(ma);
@@ -89,5 +111,90 @@ public class recFragment extends Fragment {
     public void onStop() {
         super.onStop();
         ma.stopListening();
+    }
+
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        inflater.inflate(R.menu.sortmenu, menu);
+
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+        if(id==R.id.action_sort){
+            showSortDialog();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void showSortDialog() {
+        String[] sortOpt = {"Default","Price: Low To High","Price: High to Low","Alphabetical Order"};
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setTitle("Sort by").setIcon(R.drawable.ic_action_sort).setItems(sortOpt, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                if(i==0){
+                    processSortdef();
+                }
+                if(i==1)
+                {
+                    processSortprice();
+                }
+                if(i==2)
+                {
+                    processSortrevprice();
+                }
+                if(i==3)
+                {
+                    processSortalpha();
+                }
+            }
+        });
+        builder.show();
+    }
+
+    private void processSortrevprice() {
+        GridLayoutManager gRev = new GridLayoutManager(getContext(),2);
+        gRev.setReverseLayout(true);
+        FirebaseRecyclerOptions<menuItem> options4 =
+                new FirebaseRecyclerOptions.Builder<menuItem>()
+                        .setQuery(db.orderByChild("pgPrice"), menuItem.class)
+                        .build();
+        ma = new menuAdapter(options4);
+        ma.startListening();
+        mRec.setAdapter(ma);
+        mRec.setLayoutManager(gRev);
+    }
+
+    private void processSortdef() {
+        FirebaseRecyclerOptions<menuItem> options1 =
+                new FirebaseRecyclerOptions.Builder<menuItem>()
+                        .setQuery(db, menuItem.class)
+                        .build();
+        ma = new menuAdapter(options1);
+        ma.startListening();
+        mRec.setAdapter(ma);
+    }
+
+    private void processSortalpha() {
+        FirebaseRecyclerOptions<menuItem> options3 =
+                new FirebaseRecyclerOptions.Builder<menuItem>()
+                        .setQuery(db.orderByChild("pgName"), menuItem.class)
+                        .build();
+        ma = new menuAdapter(options3);
+        ma.startListening();
+        mRec.setAdapter(ma);
+    }
+
+    private void processSortprice() {
+        FirebaseRecyclerOptions<menuItem> options2 =
+                new FirebaseRecyclerOptions.Builder<menuItem>()
+                        .setQuery(db.orderByChild("pgPrice"), menuItem.class)
+                        .build();
+        ma = new menuAdapter(options2);
+        ma.startListening();
+        mRec.setAdapter(ma);
     }
 }
