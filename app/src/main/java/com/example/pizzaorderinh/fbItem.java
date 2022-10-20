@@ -5,10 +5,11 @@ public class fbItem {
     {
 
     }
-    String pImage,pName;
-    public fbItem(String pImage, String pName){
+    String pImage,pName,pPrice;
+    public fbItem(String pImage, String pName,String pPrice){
         this.pImage=pImage;
         this.pName=pName;
+        this.pPrice=pPrice;
     }
 
     public String getpImage() {
@@ -25,5 +26,13 @@ public class fbItem {
 
     public void setpName(String pName) {
         this.pName = pName;
+    }
+
+    public String getpPrice() {
+        return pPrice;
+    }
+
+    public void setpPrice(String pPrice) {
+        this.pPrice = pPrice;
     }
 }

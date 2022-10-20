@@ -15,30 +15,28 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 
-import java.sql.Connection;
 
-public class descFragment extends Fragment {
+public class descSearch extends Fragment {
 
 
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+String pImage,pName,pPrice;
 
     private String mParam1;
     private String mParam2;
-    String pgImage,  pgName, pgPrice;
-    String pImage, pName;
-    public descFragment() {
+
+    public descSearch() {
         // Required empty public constructor
     }
 
-public descFragment(String pgImage, String pgName, String pgPrice){
-this.pgImage=pgImage;
-this.pgName=pgName;
-this.pgPrice=pgPrice;
+public descSearch(String pImage, String pName, String pPrice){
+        this.pImage=pImage;
+        this.pName=pName;
+        this.pPrice = pPrice;
 }
-
-    public static descFragment newInstance(String param1, String param2) {
-        descFragment fragment = new descFragment();
+    public static descSearch newInstance(String param1, String param2) {
+        descSearch fragment = new descSearch();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -58,24 +56,20 @@ this.pgPrice=pgPrice;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View view =inflater.inflate(R.layout.fragment_desc, container, false);
-        ImageView detI = view.findViewById(R.id.detImg);
-        TextView detT1 = view.findViewById(R.id.detText1);
-        TextView detT2 = view.findViewById(R.id.detText2);
-        Button order = view.findViewById(R.id.addOrder);
-        order.setPaintFlags(order.getPaintFlags()| Paint.UNDERLINE_TEXT_FLAG);
-        detT1.setText(pgName);
-        detT2.setText(pgPrice);
-        Glide.with(getContext()).load(pgImage).into(detI);
-
+        View view = inflater.inflate(R.layout.fragment_desc_search, container, false);
+        ImageView seaI = view.findViewById(R.id.seaImg);
+        TextView seaT1 = view.findViewById(R.id.seaText1);
+        TextView seaT2 = view.findViewById(R.id.seaText2);
+        Button seaorder = view.findViewById(R.id.addOrderS);
+        seaorder.setPaintFlags(seaorder.getPaintFlags()| Paint.UNDERLINE_TEXT_FLAG);
+        seaT1.setText(pName);
+        seaT2.setText(pPrice);
+        Glide.with(getContext()).load(pImage).into(seaI);
         return view;
     }
     public void onBackPressed()
     {
         AppCompatActivity act = (AppCompatActivity)getContext();
-        act.getSupportFragmentManager().beginTransaction().replace(R.id.wrapper,new recFragment()).addToBackStack(null).commit();
+        act.getSupportFragmentManager().beginTransaction().replace(R.id.swapper,new fragSearch()).addToBackStack(null).commit();
     }
-
-
 }
