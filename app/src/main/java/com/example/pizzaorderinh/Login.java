@@ -99,7 +99,7 @@ FirebaseUser user;
     }
 
     private void sendUsertonextactivity2() {
-        Intent in = new Intent(Login.this,NewRecycler.class);
+        Intent in = new Intent(Login.this,Search.class);
         in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(in);
     }
