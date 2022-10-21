@@ -3,6 +3,7 @@ package com.example.pizzaorderinh;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
@@ -116,12 +117,17 @@ DatabaseReference db = fb.getReference().child("menuPizzas");
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
         inflater.inflate(R.menu.sortmenu, menu);
+        inflater.inflate(R.menu.searchmenu,menu);
 
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
+        if(id==R.id.search){
+            Intent goSearch = new Intent(getContext(),Search.class);
+            startActivity(goSearch);
+        }
         if(id==R.id.action_sort){
             showSortDialog();
             return true;

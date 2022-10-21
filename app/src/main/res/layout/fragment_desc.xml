@@ -9,7 +9,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:id="@+id/detail"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    >
 
     <ImageView
         android:layout_width="200dp"
@@ -42,7 +43,7 @@
      <Button
     android:layout_width="150dp"
     android:layout_height="wrap_content"
-    android:layout_gravity="center"
+    android:layout_gravity="center|right"
     android:textSize="24dp"
     android:text="ADD ORDER"
          android:textStyle="bold"
@@ -50,6 +51,17 @@
     android:textColor="@color/black"
     android:background="@drawable/border"
     android:layout_marginTop="30dp"/>
+    <Button
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center|left"
+        android:textSize="24dp"
+        android:text="GO TO CART"
+        android:textStyle="bold"
+        android:id="@+id/gotoCart"
+        android:textColor="@color/black"
+        android:background="@drawable/border"
+        />
 
 </LinearLayout>
 
