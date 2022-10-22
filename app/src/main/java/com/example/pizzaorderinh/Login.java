@@ -18,15 +18,13 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class Login extends AppCompatActivity {
-
+public class Login extends AppCompatActivity{
     FirebaseAuth mAuth;
     FirebaseUser user;
     EditText em,pa;
     Button l,sig;
     ProgressDialog pd1;
     String emailpattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,11 +36,8 @@ public class Login extends AppCompatActivity {
         pa = findViewById(R.id.password);
         l = findViewById(R.id.log);
         sig = findViewById(R.id.sign);
-
         l.setPaintFlags(l.getPaintFlags()| Paint.UNDERLINE_TEXT_FLAG);
         sig.setPaintFlags(sig.getPaintFlags()| Paint.UNDERLINE_TEXT_FLAG);
-
-
         sig.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -50,16 +45,12 @@ public class Login extends AppCompatActivity {
                 startActivity(signKaro);
             }
         });
-
-
         l.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 performLogin();
             }
         });
-
-
     }
 
     public void performLogin() {
@@ -96,11 +87,9 @@ public class Login extends AppCompatActivity {
             });
         }
     }
-
     private void sendUsertonextactivity2() {
         Intent in = new Intent(Login.this,Menu.class);
         in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(in);
     }
-
 }

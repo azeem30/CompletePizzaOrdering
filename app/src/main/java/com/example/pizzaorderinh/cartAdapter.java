@@ -17,12 +17,7 @@ import com.firebase.ui.database.FirebaseRecyclerOptions;
 public class cartAdapter extends FirebaseRecyclerAdapter<cartItem,cartAdapter.cartHolder> {
 
 
-    /**
-     * Initialize a {@link RecyclerView.Adapter} that listens to a Firebase query. See
-     * {@link FirebaseRecyclerOptions} for configuration options.
-     *
-     * @param options
-     */
+
     public cartAdapter(@NonNull FirebaseRecyclerOptions<cartItem> options) {
         super(options);
     }
@@ -38,7 +33,6 @@ public class cartAdapter extends FirebaseRecyclerAdapter<cartItem,cartAdapter.ca
             public void onClick(View view) {
                 AppCompatActivity actCart = (AppCompatActivity) view.getContext();
                 actCart.getSupportFragmentManager().beginTransaction().replace(R.id.trolly, new trollyDetails(model.getQuantity(),model.getCpImage(),model.getCpName(), model.getOrderTotal())).addToBackStack(null).commit();
-
             }
         });
     }
@@ -49,7 +43,6 @@ public class cartAdapter extends FirebaseRecyclerAdapter<cartItem,cartAdapter.ca
         View cartView = LayoutInflater.from(parent.getContext()).inflate(R.layout.cart_item,parent,false);
         return new cartHolder(cartView);
     }
-
     public class cartHolder extends RecyclerView.ViewHolder{
         ImageView cimg;
         TextView ct1,ct2,ctQ;
