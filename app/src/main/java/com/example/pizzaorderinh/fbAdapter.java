@@ -30,7 +30,7 @@ holder.fIV.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View view) {
         AppCompatActivity act2 = (AppCompatActivity) view.getContext();
-        act2.getSupportFragmentManager().beginTransaction().replace(R.id.swapper,new descSearch(model.getpImage(),model.getpName(), model.getpPrice())).addToBackStack(null).commit();
+        act2.getSupportFragmentManager().beginTransaction().replace(R.id.swapper,new descFragment(model.getpImage(),model.getpName(), model.getpPrice())).addToBackStack(null).commit();
     }
 });
     }

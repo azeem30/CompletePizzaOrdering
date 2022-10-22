@@ -119,7 +119,7 @@ this.pgPrice=pgPrice;
         goCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent cartJao = new Intent(getContext(),Cart.class);
+                Intent cartJao = new Intent(getContext(),Trolly.class);
                 startActivity(cartJao);
             }
         });

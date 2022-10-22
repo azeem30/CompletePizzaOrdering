@@ -7,6 +7,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -32,6 +33,14 @@ public class cartAdapter extends FirebaseRecyclerAdapter<cartItem,cartAdapter.ca
         holder.ct2.setText(model.getOrderTotal());
         holder.ctQ.setText(model.getQuantity());
         Glide.with(holder.cimg.getContext()).load(model.getCpImage()).into(holder.cimg);
+        holder.ct1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AppCompatActivity actCart = (AppCompatActivity) view.getContext();
+                actCart.getSupportFragmentManager().beginTransaction().replace(R.id.trolly, new trollyDetails(model.getQuantity(),model.getCpImage(),model.getCpName(), model.getOrderTotal())).addToBackStack(null).commit();
+
+            }
+        });
     }
 
     @NonNull
@@ -49,7 +58,7 @@ public class cartAdapter extends FirebaseRecyclerAdapter<cartItem,cartAdapter.ca
             cimg = (ImageView) itemView.findViewById(R.id.cartI);
             ct1 =(TextView) itemView.findViewById(R.id.cartN);
             ct2 =(TextView) itemView.findViewById(R.id.cartP);
-            ctQ = (TextView) itemView.findViewById(R.id.textQuan);
+            ctQ = (TextView) itemView.findViewById(R.id.carttextQuan);
         }
     }
 }

@@ -15,8 +15,8 @@
         android:theme="@style/Theme.Pizzaorderinh"
         tools:targetApi="31">
         <activity
-            android:name=".Cart"
-            android:exported="true">
+            android:name=".Trolly"
+            android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
