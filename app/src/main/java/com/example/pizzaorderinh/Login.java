@@ -60,7 +60,6 @@ FirebaseUser user;
         });
 
 
-
     }
 
     public void performLogin() {

@@ -12,8 +12,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
@@ -34,19 +36,18 @@ public class descFragment extends Fragment {
 
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+
     FirebaseDatabase fb = FirebaseDatabase.getInstance();
     FirebaseAuth mAuth = FirebaseAuth.getInstance();
-    String  cMail = mAuth.getCurrentUser().getEmail();
     String user = mAuth.getCurrentUser().getUid();
     DatabaseReference dbChild = fb.getReference().child("Cart").child(user);
 
-
-
     private String mParam1;
     private String mParam2;
-    String pgImage,  pgName, pgPrice;
-    String cpImage,cpName,cpPrice;
-
+    private String pgImage,  pgName, pgPrice;
+    private String cpImage,cpName,orderTot;
+    private String quant;
+    private int cost,q,totalPrice;
     public descFragment() {
         // Required empty public constructor
     }
@@ -83,28 +84,45 @@ this.pgPrice=pgPrice;
         ImageView detI = view.findViewById(R.id.detImg);
         TextView detT1 = view.findViewById(R.id.detText1);
         TextView detT2 = view.findViewById(R.id.detText2);
+        EditText eq = view.findViewById(R.id.enterQuan);
         Button order = view.findViewById(R.id.addOrder);
-        Button goCart =view.findViewById(R.id.gotoCart);
+        Button goCart = view.findViewById(R.id.gotoCart);
         order.setPaintFlags(order.getPaintFlags()| Paint.UNDERLINE_TEXT_FLAG);
         detT1.setText(pgName);
         detT2.setText(pgPrice);
         Glide.with(getContext()).load(pgImage).into(detI);
 
-          order.setOnClickListener(new View.OnClickListener() {
+        order.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View view) {
         cpImage = pgImage;
         cpName = pgName;
-        cpPrice = pgPrice;
+
+        quant = eq.getText().toString();
+
+        q = Integer.parseInt(quant);
+        cost = Integer.parseInt(pgPrice);
+        totalPrice = q*cost;
+        orderTot = String.valueOf(totalPrice);
+
         HashMap<String, String> cMap = new HashMap<>();
-        cMap.put("Email", cMail);
         cMap.put("cpImage", cpImage);
         cMap.put("cpName", cpName);
-        cMap.put("cpPrice", cpPrice);
+        cMap.put("orderTotal", orderTot);
+        cMap.put("quantity",quant);
+
         dbChild.push().setValue(cMap);
+        Toast.makeText(getContext(),"ADDED TO CART",Toast.LENGTH_LONG).show();
         }
         });
 
+        goCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent cartJao = new Intent(getContext(),Cart.class);
+                startActivity(cartJao);
+            }
+        });
 
         return view;
     }

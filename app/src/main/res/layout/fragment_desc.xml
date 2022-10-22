@@ -5,19 +5,19 @@
     android:layout_height="match_parent"
     tools:context=".descFragment">
 
-<LinearLayout
+<RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:id="@+id/detail"
-    android:orientation="vertical"
     >
 
     <ImageView
         android:layout_width="200dp"
         android:layout_height="200dp"
         android:id="@+id/detImg"
+        android:layout_marginLeft="100dp"
         android:background="@drawable/border"
-        android:layout_gravity="center_horizontal"
+
         android:layout_marginTop="20dp"/>
 
     <TextView
@@ -25,9 +25,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif"
-     android:layout_gravity="center_horizontal"
+        android:layout_below="@+id/detImg"
+        android:layout_marginTop="10dp"
+      android:layout_marginLeft="90dp"
         android:textColor="@color/black"
-
         android:textSize="24dp"
         android:textStyle="bold"/>
     <TextView
@@ -35,11 +36,48 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif"
-        android:layout_gravity="center_horizontal"
+        android:layout_below="@+id/detText1"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="90dp"
         android:textColor="@color/black"
         android:textSize="24dp"
         android:textStyle="bold"/>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="₹"
+        android:textSize="24dp"
+        android:textStyle="bold"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/black"
+        android:layout_below="@+id/detText1"
+        android:layout_marginLeft="75dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/detText2"
+        android:id="@+id/quan"
+        android:layout_marginLeft="90dp"
+        android:textSize="24dp"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:text="Quantity: "
+        />
+    <EditText
+        android:layout_width="70dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/enterQuan"
+        android:inputType="number"
+        android:layout_toEndOf="@+id/quan"
+        android:layout_marginLeft="10dp"
+
+        android:layout_below="@+id/detText2"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:textSize="20dp"/>
      <Button
     android:layout_width="150dp"
     android:layout_height="wrap_content"
@@ -47,10 +85,12 @@
     android:textSize="24dp"
     android:text="ADD ORDER"
          android:textStyle="bold"
+         android:layout_marginLeft="245dp"
     android:id="@+id/addOrder"
     android:textColor="@color/black"
     android:background="@drawable/border"
-    android:layout_marginTop="30dp"/>
+    android:layout_marginTop="380dp"
+         />
     <Button
         android:layout_width="150dp"
         android:layout_height="wrap_content"
@@ -59,11 +99,13 @@
         android:text="GO TO CART"
         android:textStyle="bold"
         android:id="@+id/gotoCart"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="380dp"
         android:textColor="@color/black"
         android:background="@drawable/border"
         />
 
-</LinearLayout>
+</RelativeLayout>
 
 
 </FrameLayout>

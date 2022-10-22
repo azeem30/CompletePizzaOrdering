@@ -24,10 +24,23 @@
             android:textColor="@color/black"
             android:layout_centerHorizontal="true"
             android:textSize="20dp"
-            android:textStyle="bold"
+            android:textStyle="bold|italic"
             android:layout_below="@+id/menuI"
             android:layout_marginTop="10dp"
             />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/menuT2"
+            android:layout_below="@+id/menuT1"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="6dp"
+            android:textStyle="bold|italic"
+            android:textColor="@color/black"
+            android:text="₹"
+            android:textSize="20dp"/>
+
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -35,7 +48,7 @@
             android:textColor="@color/black"
 android:layout_centerHorizontal="true"
             android:textSize="20dp"
-            android:textStyle="bold"
+            android:textStyle="bold|italic"
             android:layout_below="@id/menuT1"
             android:layout_marginTop="10dp"/>
 
