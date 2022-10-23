@@ -54,6 +54,16 @@
             android:textStyle="bold|italic"
             android:layout_marginLeft="160dp"
             android:layout_marginTop="80dp"/>
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:id="@+id/delbin"
+            android:layout_below="@+id/trollyI"
+            android:layout_marginTop="40dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginBottom="10dp"
+            android:src="@drawable/delbutton"
+            />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -105,7 +115,7 @@
             android:text="SAVE CHANGES"
             android:background="@drawable/border"
             android:layout_below="@id/textQuan"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="30dp"
             android:gravity="center"
             android:layout_marginLeft="100dp"/>
     </RelativeLayout>
