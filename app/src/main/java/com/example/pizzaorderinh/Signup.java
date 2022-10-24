@@ -28,7 +28,7 @@ public class Signup extends AppCompatActivity {
     Button su,lb;
     ProgressDialog pd;
     FirebaseAuth mAuth;
-    FirebaseUser user;
+    String user;
     String emailpattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
     @SuppressLint("MissingInflatedId")
     @Override
@@ -36,9 +36,9 @@ public class Signup extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
          mAuth = FirebaseAuth.getInstance();
-         user = mAuth.getCurrentUser();
+         user = mAuth.getCurrentUser().getUid();
         FirebaseDatabase db = FirebaseDatabase.getInstance();
-        DatabaseReference root = db.getReference().child("Users");
+        DatabaseReference root = db.getReference().child("Users").child(user);
         fName= findViewById(R.id.fname);
         lName=findViewById(R.id.lname);
         contact = findViewById(R.id.contact);
@@ -76,15 +76,13 @@ public class Signup extends AppCompatActivity {
                     performAuth();
                     HashMap<String, String> userMap = new HashMap<>();
                     userMap.put("Email", e);
-                    userMap.put("First Name", fn);
-                    userMap.put("Last Name", ln);
+                    userMap.put("First_Name", fn);
+                    userMap.put("Last_Name", ln);
                     userMap.put("Contact", c);
                     userMap.put("Address", a);
                     userMap.put("DOB", d);
                     userMap.put("Password", p);
                     root.push().setValue(userMap);
-
-
             }
         });
 

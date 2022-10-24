@@ -104,7 +104,24 @@
         android:textColor="@color/black"
         android:background="@drawable/border"
         />
-
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/suggText"
+        android:text="Here's More!"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:textSize="24dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_below="@id/addOrder"
+        />
+<androidx.recyclerview.widget.RecyclerView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/sugRec"
+    android:layout_below="@id/suggText"
+    android:layout_marginTop="10dp"/>
 </RelativeLayout>
 
 

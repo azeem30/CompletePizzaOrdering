@@ -38,7 +38,7 @@ public class Login extends AppCompatActivity{
         sig = findViewById(R.id.sign);
         l.setPaintFlags(l.getPaintFlags()| Paint.UNDERLINE_TEXT_FLAG);
         sig.setPaintFlags(sig.getPaintFlags()| Paint.UNDERLINE_TEXT_FLAG);
-        sig.setOnClickListener(new View.OnClickListener() {
+        sig.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
                 Intent signKaro = new Intent(Login.this,Signup.class);

@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+app:cardUseCompatPadding="true"
+    app:cardCornerRadius="20dp"
+    android:layout_marginBottom="10dp">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/gmail"
+            android:text="Email"
+            android:textStyle="bold"
+            android:textSize="20dp"
+            android:textColor="@color/black"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="10dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/gmailFirebase"
+            android:textStyle="bold|italic"
+            android:textSize="20dp"
+            android:textColor="@color/black"
+            android:layout_toEndOf="@+id/gmail"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="10dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/viewName"
+            android:text="Name"
+            android:textStyle="bold"
+            android:textSize="20dp"
+            android:textColor="@color/black"
+            android:layout_below="@+id/gmail"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="10dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/first_name"
+            android:textStyle="bold|italic"
+            android:textSize="20dp"
+            android:textColor="@color/black"
+            android:layout_below="@+id/gmail"
+            android:layout_toEndOf="@+id/viewName"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="10dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/last_name"
+       android:layout_toEndOf="@+id/first_name"
+            android:textStyle="bold|italic"
+            android:textSize="20dp"
+            android:textColor="@color/black"
+            android:layout_below="@+id/gmail"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="10dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/phone"
+            android:text="Contact"
+            android:textStyle="bold"
+            android:textSize="20dp"
+            android:textColor="@color/black"
+            android:layout_below="@+id/viewName"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="10dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/phoneFirebase"
+           android:layout_toEndOf="@+id/phone"
+            android:textStyle="bold|italic"
+            android:textSize="20dp"
+            android:textColor="@color/black"
+            android:layout_below="@+id/viewName"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="10dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/birth"
+           android:text="DOB"
+            android:textStyle="bold"
+            android:textSize="20dp"
+            android:textColor="@color/black"
+            android:layout_below="@+id/phone"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="10dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/birthFirebase"
+            android:layout_toEndOf="@+id/birth"
+            android:textStyle="bold|italic"
+            android:textSize="20dp"
+            android:textColor="@color/black"
+            android:layout_below="@+id/phone"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="10dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/pata"
+            android:text="Address"
+            android:textStyle="bold"
+            android:textSize="20dp"
+            android:textColor="@color/black"
+            android:layout_below="@+id/birth"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="10dp"
+           />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/pataFirebase"
+            android:layout_toEndOf="@+id/pata"
+            android:textStyle="bold|italic"
+            android:textSize="20dp"
+            android:textColor="@color/black"
+            android:layout_below="@+id/birth"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="10dp"
+           />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/pword"
+            android:text="Password"
+            android:textStyle="bold"
+            android:textSize="20dp"
+            android:textColor="@color/black"
+            android:layout_below="@+id/pata"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold|italic"
+            android:id="@+id/pwordFirebase"
+            android:textSize="20dp"
+            android:textColor="@color/black"
+            android:layout_below="@+id/pata"
+            android:layout_toEndOf="@+id/pword"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp" />
+
+
+
+
+
+
+
+
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

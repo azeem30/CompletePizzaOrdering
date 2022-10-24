@@ -20,6 +20,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.Button;
 
 import com.bumptech.glide.load.resource.bitmap.RecyclableBufferedInputStream;
@@ -118,15 +119,28 @@ DatabaseReference db = fb.getReference().child("menuPizzas");
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
         inflater.inflate(R.menu.sortmenu, menu);
         inflater.inflate(R.menu.searchmenu,menu);
-
+        inflater.inflate(R.menu.menu_cart,menu);
+        inflater.inflate(R.menu.account,menu);
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
+        if(id==R.id.acc){
+            AppCompatActivity profJao = (AppCompatActivity) getContext();
+            profJao.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
+            profJao.getSupportFragmentManager().beginTransaction().replace(R.id.wrapper,new profDetails()).commit();
+        }
+        if(id==R.id.cartMenu){
+            AppCompatActivity cartJao = (AppCompatActivity) getContext();
+            cartJao.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
+            cartJao.getSupportFragmentManager().beginTransaction().replace(R.id.wrapper,new trollyList()).commit();
+        }
         if(id==R.id.search){
-            Intent goSearch = new Intent(getContext(),Search.class);
-            startActivity(goSearch);
+          AppCompatActivity searchJao = (AppCompatActivity) getContext();
+            searchJao.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
+            searchJao.getSupportFragmentManager().beginTransaction().replace(R.id.wrapper,new fragSearch()).commit();
+
         }
         if(id==R.id.action_sort){
             showSortDialog();
