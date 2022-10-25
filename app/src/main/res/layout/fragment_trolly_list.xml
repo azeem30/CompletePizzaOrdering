@@ -40,6 +40,56 @@
             android:layout_below="@+id/cartListLogo"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Total Cost: "
+            android:textColor="@color/black"
+            android:id="@+id/totCostView"
+            android:textSize="24dp"
+            android:textStyle="bold"
+            android:layout_below="@+id/recCartList"
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="10dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/totCostRup"
+            android:layout_below="@id/recCartList"
+            android:layout_marginTop="30dp"
+            android:text="₹"
+            android:textSize="24dp"
+            android:textColor="@color/black"
+            android:textStyle="bold|italic"
+            android:layout_toEndOf="@id/totCostView"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/actTotCost"
+            android:layout_below="@+id/recCartList"
+            android:layout_toEndOf="@+id/totCostRup"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="30dp"
+            android:textSize="24dp"
+            android:textColor="@color/black"
+            android:textStyle="bold|italic"
+            />
+        <Button
+            android:id="@+id/checkout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ORDER"
+            android:textColor="@color/green"
+            android:textSize="20dp"
+            android:textStyle="bold|italic"
+            android:layout_below="@+id/totCostView"
+            android:layout_marginTop="60dp"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/border"/>
+
     </RelativeLayout>
 
 </FrameLayout>

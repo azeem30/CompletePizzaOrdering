@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardUseCompatPadding="true"
+    app:cardCornerRadius="20dp">
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        >
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:id="@+id/suggI"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="20dp"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/suggN"
+            android:layout_below="@+id/suggI"
+
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="20dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/suggRupees"
+            android:text="₹"
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            android:textStyle="bold|italic"
+            android:layout_below="@+id/suggN"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/suggP"
+            android:layout_below="@+id/suggN"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="20dp"
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            android:textStyle="bold|italic"
+            android:layout_marginBottom="20dp"/>
+
+
+
+
+
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

@@ -53,7 +53,7 @@ public class descFragment extends Fragment {
     DatabaseReference db = fbsug.getReference().child("menuPizzas");
 
     RecyclerView sugg;
-    menuAdapter ma2;
+    suggAdapter sa;
     private String mParam1;
     private String mParam2;
     private String pgImage,  pgName, pgPrice;
@@ -113,8 +113,8 @@ this.pgPrice=pgPrice;
                 new FirebaseRecyclerOptions.Builder<menuItem>()
                         .setQuery(db, menuItem.class)
                         .build();
-        ma2 = new menuAdapter(optionsSug);
-        sugg.setAdapter(ma2);
+        sa = new suggAdapter(optionsSug);
+        sugg.setAdapter(sa);
 
 
 
@@ -160,12 +160,12 @@ this.pgPrice=pgPrice;
     @Override
     public void onStart() {
         super.onStart();
-        ma2.startListening();
+        sa.startListening();
     }
     @Override
     public void onStop() {
         super.onStop();
-        ma2.stopListening();
+        sa.stopListening();
     }
 
 }

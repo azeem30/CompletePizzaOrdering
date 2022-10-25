@@ -15,13 +15,21 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -36,8 +44,11 @@ public class trollyList extends Fragment {
     DatabaseReference dRef = fire.getReference().child("Cart").child(user);
     RecyclerView cartRecycler;
     cartAdapter ca;
-
-
+    List priceList;
+    int cp,totCost;
+    int sum=0;
+    int current;
+    String total;
 
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
@@ -76,6 +87,9 @@ public class trollyList extends Fragment {
         View viewCart =inflater.inflate(R.layout.fragment_trolly_list, container, false);
         ImageView clogo = viewCart.findViewById(R.id.cartListLogo);
         TextView cartText=viewCart.findViewById(R.id.cartListText);
+        TextView totalCost = viewCart.findViewById(R.id.actTotCost);
+        Button checkout = viewCart.findViewById(R.id.checkout);
+        checkout.setPaintFlags(checkout.getPaintFlags()| Paint.UNDERLINE_TEXT_FLAG);
         cartText.setPaintFlags(cartText.getPaintFlags()| Paint.UNDERLINE_TEXT_FLAG);
 
         cartRecycler=viewCart.findViewById(R.id.recCartList);
@@ -87,6 +101,30 @@ public class trollyList extends Fragment {
         ca= new cartAdapter(optionsT);
         cartRecycler.setAdapter(ca);
 
+       dRef.addValueEventListener(new ValueEventListener() {
+           @Override
+           public void onDataChange(@NonNull DataSnapshot snapshot) {
+               priceList = new ArrayList<Integer>();
+               for(DataSnapshot tds : snapshot.getChildren()){
+                   String uKey = tds.getKey();
+                   String cartPrice = tds.child("orderTotal").getValue().toString();
+                   cp = Integer.parseInt(cartPrice);
+                   priceList.add(cp);
+               }
+
+               for(int i = 0 ; i<priceList.size();i++){
+                   current = (int) priceList.get(i);
+                   sum = sum + current;
+               }
+               totCost = sum;
+               total = String.valueOf(totCost);
+               totalCost.setText(total);
+           }
+           @Override
+           public void onCancelled(@NonNull DatabaseError error) {
+
+           }
+       });
         return viewCart;
     }
     @Override
