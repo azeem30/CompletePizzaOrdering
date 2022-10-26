@@ -17,6 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,6 +30,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -42,6 +44,7 @@ public class trollyList extends Fragment {
     FirebaseAuth fAuth = FirebaseAuth.getInstance();
     String user = fAuth.getCurrentUser().getUid();
     DatabaseReference dRef = fire.getReference().child("Cart").child(user);
+    DatabaseReference dOrd = fire.getReference().child("Orders").child(user);
     RecyclerView cartRecycler;
     cartAdapter ca;
     List priceList;
@@ -49,6 +52,7 @@ public class trollyList extends Fragment {
     int sum=0;
     int current;
     String total;
+    HashMap <String,String> orderMap;
 
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
@@ -85,6 +89,7 @@ public class trollyList extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View viewCart =inflater.inflate(R.layout.fragment_trolly_list, container, false);
+        ScrollView cScroll =viewCart.findViewById(R.id.cartScroll);
         ImageView clogo = viewCart.findViewById(R.id.cartListLogo);
         TextView cartText=viewCart.findViewById(R.id.cartListText);
         TextView totalCost = viewCart.findViewById(R.id.actTotCost);
@@ -92,6 +97,7 @@ public class trollyList extends Fragment {
         checkout.setPaintFlags(checkout.getPaintFlags()| Paint.UNDERLINE_TEXT_FLAG);
         cartText.setPaintFlags(cartText.getPaintFlags()| Paint.UNDERLINE_TEXT_FLAG);
 
+        cScroll.setSmoothScrollingEnabled(true);
         cartRecycler=viewCart.findViewById(R.id.recCartList);
         cartRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
         FirebaseRecyclerOptions<cartItem> optionsT =
@@ -101,30 +107,66 @@ public class trollyList extends Fragment {
         ca= new cartAdapter(optionsT);
         cartRecycler.setAdapter(ca);
 
-       dRef.addValueEventListener(new ValueEventListener() {
-           @Override
-           public void onDataChange(@NonNull DataSnapshot snapshot) {
-               priceList = new ArrayList<Integer>();
-               for(DataSnapshot tds : snapshot.getChildren()){
-                   String uKey = tds.getKey();
-                   String cartPrice = tds.child("orderTotal").getValue().toString();
-                   cp = Integer.parseInt(cartPrice);
-                   priceList.add(cp);
-               }
+        dRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                priceList = new ArrayList<Integer>();
+                for(DataSnapshot tds : snapshot.getChildren()){
+                    String uKey = tds.getKey();
+                    String cartPrice = tds.child("orderTotal").getValue().toString();
+                    cp = Integer.parseInt(cartPrice);
+                    priceList.add(cp);
+                }
 
-               for(int i = 0 ; i<priceList.size();i++){
-                   current = (int) priceList.get(i);
-                   sum = sum + current;
-               }
-               totCost = sum;
-               total = String.valueOf(totCost);
-               totalCost.setText(total);
-           }
-           @Override
-           public void onCancelled(@NonNull DatabaseError error) {
+                for(int i = 0 ; i<priceList.size();i++){
+                    current = (int) priceList.get(i);
+                    sum = sum + current;
+                }
+                totCost = sum;
+                total = String.valueOf(totCost);
+                totalCost.setText(total);
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
 
+            }
+        });
+
+       checkout.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View view) {
+               dRef.addValueEventListener(new ValueEventListener() {
+                   @Override
+                   public void onDataChange(@NonNull DataSnapshot snapshot) {
+                       orderMap =  new HashMap<>();
+                       for(DataSnapshot order: snapshot.getChildren()){
+                           String oKey = order.getKey();
+                           String oImg = order.child("cpImage").getValue().toString();
+                           String oName = order.child("cpName").getValue().toString();
+                           String oQuan = order.child("quantity").getValue().toString();
+                           String perP = order.child("orderTotal").getValue().toString();
+                           orderMap.put("orderI",oImg);
+                           orderMap.put("orderN",oName);
+                           orderMap.put("orderP",perP);
+                           orderMap.put("orderQ",oQuan);
+                           orderMap.put("orderTotalCost",total);
+                           dOrd.push().setValue(orderMap);
+                           dRef.setValue(null);
+
+                       }
+                   }
+
+                   @Override
+                   public void onCancelled(@NonNull DatabaseError error) {
+
+                   }
+               });
            }
        });
+
+
+
+
         return viewCart;
     }
     @Override

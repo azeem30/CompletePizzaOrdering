@@ -203,6 +203,7 @@ public class trollyDetails extends Fragment {
                                 Toast.makeText(getContext(),"NULL", Toast.LENGTH_LONG).show();
                             }
                             else if(snapshot.child("quantity").getValue().equals("0")||snapshot.child("orderTotal").getValue().equals("0")){
+                                sendUserToMenu();
                                 pDelRef.setValue(null);
                                 Toast.makeText(getContext(), "REMOVED ITEM FROM CART", Toast.LENGTH_LONG).show();
                                 sendUserToCart();
@@ -225,7 +226,45 @@ public class trollyDetails extends Fragment {
         };
         dFire.addListenerForSingleValueEvent(delVel);
 
+         delete.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View view) {
+                 dFire.addValueEventListener(new ValueEventListener() {
+                     @Override
+                     public void onDataChange(@NonNull DataSnapshot snapshot) {
+                         for (DataSnapshot cartItems : snapshot.getChildren()) {
+                             String cUniqueKey = cartItems.getKey();
+                             DatabaseReference newDFire = dFire.child(cUniqueKey);
+                             newDFire.addValueEventListener(new ValueEventListener() {
+                                 @Override
+                                 public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                     if(snapshot.child("cpName").getValue().equals(cpName)){
+                                         sendUserToMenu();
+                                         newDFire.setValue(null);
+                                         Toast.makeText(getContext(),"ITEM DELETED FROM CART",Toast.LENGTH_SHORT).show();
+                                         sendUserToCart();
+                                         }
+                                     else{
+                                         Toast.makeText(getContext(),"NOT FOUND ",Toast.LENGTH_SHORT).show();
+                                     }
+                                     }
 
+
+                                 @Override
+                                 public void onCancelled(@NonNull DatabaseError error) {
+
+                                 }
+                             });
+                         }
+                     }
+
+                     @Override
+                     public void onCancelled(@NonNull DatabaseError error) {
+
+                     }
+                 });
+             }
+         });
 
 
 
@@ -240,5 +279,9 @@ public class trollyDetails extends Fragment {
         changes.dismiss();
         AppCompatActivity cartProgress = (AppCompatActivity) getContext();
         cartProgress.getSupportFragmentManager().beginTransaction().replace(R.id.trolly, new trollyList()).addToBackStack(null).commit();
+    }
+    public void sendUserToMenu(){
+        AppCompatActivity menuJao = (AppCompatActivity) getContext();
+        menuJao.getSupportFragmentManager().beginTransaction().replace(R.id.trolly, new recFragment()).addToBackStack(null).commit();
     }
 }

@@ -32,24 +32,16 @@ import org.checkerframework.checker.units.qual.A;
 
 import java.util.Objects;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link recFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+
 public class recFragment extends Fragment{
 
 FirebaseDatabase fb = FirebaseDatabase.getInstance();
 DatabaseReference db = fb.getReference().child("menuPizzas");
 
 
-
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
     RecyclerView mRec;
@@ -58,15 +50,8 @@ DatabaseReference db = fb.getReference().child("menuPizzas");
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment recFragment.
-     */
-    // TODO: Rename and change types and number of parameters
+
+
     public static recFragment newInstance(String param1, String param2) {
         recFragment fragment = new recFragment();
         Bundle args = new Bundle();
@@ -121,11 +106,17 @@ DatabaseReference db = fb.getReference().child("menuPizzas");
         inflater.inflate(R.menu.searchmenu,menu);
         inflater.inflate(R.menu.menu_cart,menu);
         inflater.inflate(R.menu.account,menu);
+        inflater.inflate(R.menu.your_orders,menu);
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
+        if(id==R.id.menu_orders){
+            AppCompatActivity gotoYourOrders = (AppCompatActivity) getContext();
+            gotoYourOrders.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
+            gotoYourOrders.getSupportFragmentManager().beginTransaction().replace(R.id.wrapper,new yourOrders()).commit();
+        }
         if(id==R.id.acc){
             AppCompatActivity profJao = (AppCompatActivity) getContext();
             profJao.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
@@ -135,6 +126,7 @@ DatabaseReference db = fb.getReference().child("menuPizzas");
             AppCompatActivity cartJao = (AppCompatActivity) getContext();
             cartJao.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
             cartJao.getSupportFragmentManager().beginTransaction().replace(R.id.wrapper,new trollyList()).commit();
+
         }
         if(id==R.id.search){
           AppCompatActivity searchJao = (AppCompatActivity) getContext();
