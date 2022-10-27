@@ -32,7 +32,7 @@ public class cartAdapter extends FirebaseRecyclerAdapter<cartItem,cartAdapter.ca
             @Override
             public void onClick(View view) {
                 AppCompatActivity actCart = (AppCompatActivity) view.getContext();
-                actCart.getSupportFragmentManager().beginTransaction().replace(R.id.trolly, new trollyDetails(model.getQuantity(),model.getCpImage(),model.getCpName(), model.getOrderTotal())).addToBackStack(null).commit();
+                actCart.getSupportFragmentManager().beginTransaction().replace(R.id.start, new trollyDetails(model.getQuantity(),model.getCpImage(),model.getCpName(), model.getOrderTotal())).addToBackStack(null).commit();
             }
         });
     }

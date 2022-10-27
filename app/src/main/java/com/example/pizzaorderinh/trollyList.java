@@ -163,10 +163,6 @@ public class trollyList extends Fragment {
                });
            }
        });
-
-
-
-
         return viewCart;
     }
     @Override

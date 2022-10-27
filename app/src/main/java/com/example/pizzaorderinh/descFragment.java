@@ -19,6 +19,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -54,6 +55,7 @@ public class descFragment extends Fragment {
 
     RecyclerView sugg;
     suggAdapter sa;
+    FrameLayout fDesc;
     private String mParam1;
     private String mParam2;
     private String pgImage,  pgName, pgPrice;
@@ -95,6 +97,7 @@ this.pgPrice=pgPrice;
         // Inflate the layout for this fragment
         View view =inflater.inflate(R.layout.fragment_desc, container, false);
         ImageView detI = view.findViewById(R.id.detImg);
+        fDesc = view.findViewById(R.id.descFrame);
         TextView detT1 = view.findViewById(R.id.detText1);
         TextView detT2 = view.findViewById(R.id.detText2);
         TextView sugText = view.findViewById(R.id.suggText);
@@ -145,8 +148,9 @@ this.pgPrice=pgPrice;
         goCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent cartJao = new Intent(getContext(),Trolly.class);
-                startActivity(cartJao);
+                AppCompatActivity acyGoCart = (AppCompatActivity)getContext();
+                acyGoCart.getSupportFragmentManager().beginTransaction().replace(R.id.start,new trollyList()).addToBackStack(null).commit();
+                fDesc.removeAllViews();
             }
         });
 
@@ -155,7 +159,8 @@ this.pgPrice=pgPrice;
     public void onBackPressed()
     {
         AppCompatActivity act = (AppCompatActivity)getContext();
-        act.getSupportFragmentManager().beginTransaction().replace(R.id.wrapper,new recFragment()).addToBackStack(null).commit();
+        act.getSupportFragmentManager().beginTransaction().replace(R.id.start,new recFragment()).addToBackStack(null).commit();
+        fDesc.removeAllViews();
     }
     @Override
     public void onStart() {

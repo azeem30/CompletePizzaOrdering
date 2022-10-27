@@ -14,6 +14,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.SearchView;
 
 import com.firebase.ui.database.FirebaseRecyclerOptions;
@@ -26,10 +27,10 @@ public class fragSearch extends Fragment {
     RecyclerView sRec;
     fbAdapter fba;
     FirebaseDatabase fb = FirebaseDatabase.getInstance();
-    DatabaseReference db = fb.getReference().child("Pizzas");
+    DatabaseReference db = fb.getReference().child("menuPizzas");
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-
+   FrameLayout fSearch;
 
     private String mParam1;
     private String mParam2;
@@ -64,11 +65,12 @@ public class fragSearch extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_frag_search, container, false);
+        fSearch = view.findViewById(R.id.frameSearch);
         sRec = view.findViewById(R.id.seaR);
         sRec.setLayoutManager(new LinearLayoutManager(getContext()));
-        FirebaseRecyclerOptions<fbItem> optionsS =
-                new FirebaseRecyclerOptions.Builder<fbItem>()
-                        .setQuery(db, fbItem.class)
+        FirebaseRecyclerOptions<menuItem> optionsS =
+                new FirebaseRecyclerOptions.Builder<menuItem>()
+                        .setQuery(db, menuItem.class)
                         .build();
         fba = new fbAdapter(optionsS);
         sRec.setAdapter(fba);
@@ -107,9 +109,9 @@ public class fragSearch extends Fragment {
     }
 
     private void processSearch(String s) {
-        FirebaseRecyclerOptions<fbItem> optionsN =
-                new FirebaseRecyclerOptions.Builder<fbItem>()
-                        .setQuery(db.orderByChild("pName").startAt(s.toUpperCase()).endAt(s.toLowerCase()+"\uf8ff"), fbItem.class)
+        FirebaseRecyclerOptions<menuItem> optionsN =
+                new FirebaseRecyclerOptions.Builder<menuItem>()
+                        .setQuery(db.orderByChild("pgName").startAt(s.toUpperCase()).endAt(s.toLowerCase()+"\uf8ff"), menuItem.class)
                         .build();
 
         fba = new fbAdapter(optionsN);

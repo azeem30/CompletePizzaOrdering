@@ -1,5 +1,6 @@
 package com.example.pizzaorderinh;
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.graphics.Paint;
 import android.os.Bundle;
@@ -13,7 +14,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.FrameLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,6 +38,7 @@ public class yourOrders extends Fragment {
    yourOrderAdapter yoa;
    RecyclerView recOrder;
    ProgressDialog cancelling;
+
 
 
     private static final String ARG_PARAM1 = "param1";
@@ -74,6 +79,9 @@ public class yourOrders extends Fragment {
         TextView yoLabel = viewOrder.findViewById(R.id.yourOrderLabelText);
         yoLabel.setPaintFlags(yoLabel.getPaintFlags()| Paint.UNDERLINE_TEXT_FLAG);
         Button cancel = viewOrder.findViewById(R.id.cancOrder);
+        @SuppressLint({"MissingInflatedId", "LocalSuppress"})
+        ScrollView yoScroll = viewOrder.findViewById(R.id.yourOrderScroll);
+        yoScroll.setSmoothScrollingEnabled(true);
         recOrder = viewOrder.findViewById(R.id.orderRec);
         recOrder.setLayoutManager(new LinearLayoutManager(getContext()));
 
@@ -95,16 +103,17 @@ public class yourOrders extends Fragment {
                     }
                     public void sendUserToMenu(){
                         AppCompatActivity ordersSeVapas = (AppCompatActivity)getContext();
-                        ordersSeVapas.getSupportFragmentManager().beginTransaction().replace(R.id.wrapper,new recFragment()).addToBackStack(null).commit();
+                        ordersSeVapas.getSupportFragmentManager().beginTransaction().replace(R.id.start,new recFragment()).addToBackStack(null).commit();
                     }
                     public void sendUserToYourOrders(){
                         AppCompatActivity menuSeOrder = (AppCompatActivity)getContext();
-                        menuSeOrder.getSupportFragmentManager().beginTransaction().replace(R.id.wrapper,new yourOrders()).addToBackStack(null).commit();
+                        menuSeOrder.getSupportFragmentManager().beginTransaction().replace(R.id.start,new yourOrders()).addToBackStack(null).commit();
                     }
 
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         dYourOrder.setValue(null);
+                        sendUserToMenu();
                     }
 
                     @Override
@@ -114,6 +123,7 @@ public class yourOrders extends Fragment {
                 });
             }
         });
+
         return  viewOrder;
     }
     @Override

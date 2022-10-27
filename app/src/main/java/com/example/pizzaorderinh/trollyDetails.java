@@ -14,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -226,45 +227,43 @@ public class trollyDetails extends Fragment {
         };
         dFire.addListenerForSingleValueEvent(delVel);
 
-         delete.setOnClickListener(new View.OnClickListener() {
-             @Override
-             public void onClick(View view) {
-                 dFire.addValueEventListener(new ValueEventListener() {
-                     @Override
-                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                         for (DataSnapshot cartItems : snapshot.getChildren()) {
-                             String cUniqueKey = cartItems.getKey();
-                             DatabaseReference newDFire = dFire.child(cUniqueKey);
-                             newDFire.addValueEventListener(new ValueEventListener() {
-                                 @Override
-                                 public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                     if(snapshot.child("cpName").getValue().equals(cpName)){
-                                         sendUserToMenu();
-                                         newDFire.setValue(null);
-                                         Toast.makeText(getContext(),"ITEM DELETED FROM CART",Toast.LENGTH_SHORT).show();
-                                         sendUserToCart();
-                                         }
-                                     else{
-                                         Toast.makeText(getContext(),"NOT FOUND ",Toast.LENGTH_SHORT).show();
-                                     }
-                                     }
+      delete.setOnClickListener(new View.OnClickListener() {
+          @Override
+          public void onClick(View view) {
+              ValueEventListener delItem = new ValueEventListener() {
+                  @Override
+                  public void onDataChange(@NonNull DataSnapshot snapshot) {
+                      for(DataSnapshot trollyItem : snapshot.getChildren()){
+                          String trUniq = trollyItem.getKey();
+                          DatabaseReference newDTrolly = fiery.getReference().child("Cart").child(cUser).child(trUniq);
+                          ValueEventListener delItem2 = new ValueEventListener() {
+                              @Override
+                              public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                  if(snapshot.child("cpName").getValue().equals(cpName)){
+                                      sendUserToMenu();
+                                      newDTrolly.setValue(null);
+                                      Toast.makeText(getContext(),"Removed Item From Cart", Toast.LENGTH_SHORT).show();
+                                      sendUserToCart();
+                                  }
+                              }
 
+                              @Override
+                              public void onCancelled(@NonNull DatabaseError error) {
 
-                                 @Override
-                                 public void onCancelled(@NonNull DatabaseError error) {
+                              }
+                          };
+                          newDTrolly.addListenerForSingleValueEvent(delItem2);
+                      }
+                  }
 
-                                 }
-                             });
-                         }
-                     }
+                  @Override
+                  public void onCancelled(@NonNull DatabaseError error) {
 
-                     @Override
-                     public void onCancelled(@NonNull DatabaseError error) {
-
-                     }
-                 });
-             }
-         });
+                  }
+              };
+              dFire.addListenerForSingleValueEvent(delItem);
+          }
+      });
 
 
 
@@ -273,15 +272,18 @@ public class trollyDetails extends Fragment {
     public void onBackPressedCart()
     {
         AppCompatActivity cartBack = (AppCompatActivity) getContext();
-        cartBack.getSupportFragmentManager().beginTransaction().replace(R.id.trolly, new trollyList()).addToBackStack(null).commit();
+        cartBack.getSupportFragmentManager().beginTransaction().replace(R.id.start, new trollyList()).addToBackStack(null).commit();
+
     }
     public void sendUserToCart(){
         changes.dismiss();
         AppCompatActivity cartProgress = (AppCompatActivity) getContext();
-        cartProgress.getSupportFragmentManager().beginTransaction().replace(R.id.trolly, new trollyList()).addToBackStack(null).commit();
+        cartProgress.getSupportFragmentManager().beginTransaction().replace(R.id.start, new trollyList()).addToBackStack(null).commit();
+
     }
     public void sendUserToMenu(){
         AppCompatActivity menuJao = (AppCompatActivity) getContext();
-        menuJao.getSupportFragmentManager().beginTransaction().replace(R.id.trolly, new recFragment()).addToBackStack(null).commit();
+        menuJao.getSupportFragmentManager().beginTransaction().replace(R.id.start, new recFragment()).addToBackStack(null).commit();
+
     }
 }

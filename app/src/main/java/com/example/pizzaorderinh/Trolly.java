@@ -12,6 +12,6 @@ public class Trolly extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trolly);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        getSupportFragmentManager().beginTransaction().replace(R.id.trolly,new trollyList()).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.start,new trollyList()).addToBackStack(null).commit();
     }
 }

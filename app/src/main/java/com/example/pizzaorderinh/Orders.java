@@ -12,6 +12,6 @@ public class Orders extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_orders);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        getSupportFragmentManager().beginTransaction().replace(R.id.orderSwap,new yourOrders()).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.start,new yourOrders()).commit();
     }
 }

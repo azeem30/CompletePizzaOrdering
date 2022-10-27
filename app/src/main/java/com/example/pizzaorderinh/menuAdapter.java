@@ -30,7 +30,7 @@ public class menuAdapter extends FirebaseRecyclerAdapter<menuItem,menuAdapter.me
             @Override
             public void onClick(View view) {
                 AppCompatActivity act = (AppCompatActivity) view.getContext();
-                act.getSupportFragmentManager().beginTransaction().replace(R.id.wrapper,new descFragment(model.getPgImage(),model.getPgName(),model.getPgPrice())).addToBackStack(null).commit();
+                act.getSupportFragmentManager().beginTransaction().replace(R.id.start,new descFragment(model.getPgImage(),model.getPgName(),model.getPgPrice())).addToBackStack(null).commit();
 
             }
         });

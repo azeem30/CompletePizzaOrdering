@@ -34,7 +34,7 @@ public class suggAdapter extends FirebaseRecyclerAdapter<menuItem,suggAdapter.su
                        @Override
                        public void onClick(View view) {
                            AppCompatActivity actSugg = (AppCompatActivity) view.getContext();
-                           actSugg.getSupportFragmentManager().beginTransaction().replace(R.id.wrapper,new descFragment(model.getPgImage(),model.getPgName(),model.getPgPrice())).addToBackStack(null).commit();
+                           actSugg.getSupportFragmentManager().beginTransaction().replace(R.id.start,new descFragment(model.getPgImage(),model.getPgName(),model.getPgPrice())).addToBackStack(null).commit();
                        }
                    });
     }

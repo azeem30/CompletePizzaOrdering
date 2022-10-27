@@ -115,23 +115,23 @@ DatabaseReference db = fb.getReference().child("menuPizzas");
         if(id==R.id.menu_orders){
             AppCompatActivity gotoYourOrders = (AppCompatActivity) getContext();
             gotoYourOrders.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
-            gotoYourOrders.getSupportFragmentManager().beginTransaction().replace(R.id.wrapper,new yourOrders()).commit();
+            gotoYourOrders.getSupportFragmentManager().beginTransaction().replace(R.id.start,new yourOrders()).addToBackStack(null).commit();
         }
         if(id==R.id.acc){
             AppCompatActivity profJao = (AppCompatActivity) getContext();
             profJao.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
-            profJao.getSupportFragmentManager().beginTransaction().replace(R.id.wrapper,new profDetails()).commit();
+            profJao.getSupportFragmentManager().beginTransaction().replace(R.id.start,new profDetails()).addToBackStack(null).commit();
         }
         if(id==R.id.cartMenu){
             AppCompatActivity cartJao = (AppCompatActivity) getContext();
             cartJao.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
-            cartJao.getSupportFragmentManager().beginTransaction().replace(R.id.wrapper,new trollyList()).commit();
+            cartJao.getSupportFragmentManager().beginTransaction().replace(R.id.start,new trollyList()).addToBackStack(null).commit();
 
         }
         if(id==R.id.search){
           AppCompatActivity searchJao = (AppCompatActivity) getContext();
             searchJao.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
-            searchJao.getSupportFragmentManager().beginTransaction().replace(R.id.wrapper,new fragSearch()).commit();
+            searchJao.getSupportFragmentManager().beginTransaction().replace(R.id.start,new fragSearch()).addToBackStack(null).commit();
 
         }
         if(id==R.id.action_sort){
