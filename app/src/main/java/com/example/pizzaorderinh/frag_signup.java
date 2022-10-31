@@ -1,7 +1,6 @@
 package com.example.pizzaorderinh;
 
 import android.app.ProgressDialog;
-import android.content.Intent;
 import android.graphics.Paint;
 import android.os.Bundle;
 
@@ -26,16 +25,13 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.HashMap;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link frag_signup#newInstance} factory method to
- * create an instance of this fragment.
- */
+
 public class frag_signup extends Fragment {
 
     ProgressDialog pd;
     FirebaseAuth mAuth = FirebaseAuth.getInstance();
     String user= mAuth.getCurrentUser().getUid();
+
     String emailpattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
     FirebaseDatabase db = FirebaseDatabase.getInstance();
     DatabaseReference root = db.getReference().child("Users").child(user);
@@ -111,14 +107,14 @@ public class frag_signup extends Fragment {
                 String p = password.getText().toString();
                 performAuth();
                 HashMap<String, String> userMap = new HashMap<>();
-                userMap.put("Email", e);
-                userMap.put("First_Name", fn);
-                userMap.put("Last_Name", ln);
-                userMap.put("Contact", c);
-                userMap.put("Address", a);
-                userMap.put("DOB", d);
-                userMap.put("Password", p);
-                root.push().setValue(userMap);
+                userMap.put("email", e);
+                userMap.put("firstname", fn);
+                userMap.put("lastname", ln);
+                userMap.put("contact", c);
+                userMap.put("address", a);
+                userMap.put("dob", d);
+                userMap.put("password", p);
+                root.setValue(userMap);
             }
         });
         return signView;

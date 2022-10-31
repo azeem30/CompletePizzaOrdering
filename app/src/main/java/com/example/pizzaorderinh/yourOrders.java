@@ -1,7 +1,9 @@
 package com.example.pizzaorderinh;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.graphics.Paint;
 import android.os.Bundle;
 
@@ -16,7 +18,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.FrameLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -38,6 +39,7 @@ public class yourOrders extends Fragment {
    yourOrderAdapter yoa;
    RecyclerView recOrder;
    ProgressDialog cancelling;
+   AlertDialog.Builder cancelOrder;
 
 
 
@@ -76,6 +78,31 @@ public class yourOrders extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragmentView
         View viewOrder = inflater.inflate(R.layout.fragment_your_orders, container, false);
+        cancelOrder = new AlertDialog.Builder(getContext()).setTitle("Cancel Order").setMessage("Are you sure you want to cancel your order?").setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dYourOrder.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        dYourOrder.setValue(null);
+                        sendUserToMenu();
+                        Toast.makeText(getContext(), "Your Order Has Been Cancelled", Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+            }
+        }).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                AppCompatActivity ordersPeRaho = (AppCompatActivity) getContext();
+                ordersPeRaho.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
+                ordersPeRaho.getSupportFragmentManager().beginTransaction().replace(R.id.start,new yourOrders()).addToBackStack(null).commit();
+            }
+        });
         TextView yoLabel = viewOrder.findViewById(R.id.yourOrderLabelText);
         yoLabel.setPaintFlags(yoLabel.getPaintFlags()| Paint.UNDERLINE_TEXT_FLAG);
         Button cancel = viewOrder.findViewById(R.id.cancOrder);
@@ -95,32 +122,7 @@ public class yourOrders extends Fragment {
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                dYourOrder.addValueEventListener(new ValueEventListener() {
-                    public void cancellation() {
-                        cancelling.setTitle("Cancel Order");
-                        cancelling.setMessage("Your Order is Being Cancelled");
-                        cancelling.show();
-                    }
-                    public void sendUserToMenu(){
-                        AppCompatActivity ordersSeVapas = (AppCompatActivity)getContext();
-                        ordersSeVapas.getSupportFragmentManager().beginTransaction().replace(R.id.start,new recFragment()).addToBackStack(null).commit();
-                    }
-                    public void sendUserToYourOrders(){
-                        AppCompatActivity menuSeOrder = (AppCompatActivity)getContext();
-                        menuSeOrder.getSupportFragmentManager().beginTransaction().replace(R.id.start,new yourOrders()).addToBackStack(null).commit();
-                    }
-
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        dYourOrder.setValue(null);
-                        sendUserToMenu();
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-                    }
-                });
+                 cancelOrder.show();
             }
         });
 
@@ -135,5 +137,14 @@ public class yourOrders extends Fragment {
     public void onStop() {
         super.onStop();
         yoa.stopListening();
+    }
+    public void cancellation() {
+        cancelling.setTitle("Cancel Order");
+        cancelling.setMessage("Your Order is Being Cancelled");
+        cancelling.show();
+    }
+    public void sendUserToMenu(){
+        AppCompatActivity ordersSeVapas = (AppCompatActivity)getContext();
+        ordersSeVapas.getSupportFragmentManager().beginTransaction().replace(R.id.start,new recFragment()).addToBackStack(null).commit();
     }
 }

@@ -6,11 +6,11 @@
     app:cardCornerRadius="20dp"
     android:elevation="8dp"
     app:cardUseCompatPadding="true"
-  android:background="@drawable/border"
-    >
+  android:background="@drawable/border">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:id="@+id/menuRel"
         android:padding="15dp">
         <ImageView
             android:layout_width="100dp"

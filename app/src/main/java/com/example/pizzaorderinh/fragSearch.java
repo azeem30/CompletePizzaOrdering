@@ -30,7 +30,6 @@ public class fragSearch extends Fragment {
     DatabaseReference db = fb.getReference().child("menuPizzas");
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-   FrameLayout fSearch;
 
     private String mParam1;
     private String mParam2;
@@ -65,7 +64,6 @@ public class fragSearch extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_frag_search, container, false);
-        fSearch = view.findViewById(R.id.frameSearch);
         sRec = view.findViewById(R.id.seaR);
         sRec.setLayoutManager(new LinearLayoutManager(getContext()));
         FirebaseRecyclerOptions<menuItem> optionsS =

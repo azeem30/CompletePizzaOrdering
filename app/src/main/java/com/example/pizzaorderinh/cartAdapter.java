@@ -4,6 +4,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -28,7 +29,7 @@ public class cartAdapter extends FirebaseRecyclerAdapter<cartItem,cartAdapter.ca
         holder.ct2.setText(model.getOrderTotal());
         holder.ctQ.setText(model.getQuantity());
         Glide.with(holder.cimg.getContext()).load(model.getCpImage()).into(holder.cimg);
-        holder.ct1.setOnClickListener(new View.OnClickListener() {
+        holder.cartRel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 AppCompatActivity actCart = (AppCompatActivity) view.getContext();
@@ -46,12 +47,14 @@ public class cartAdapter extends FirebaseRecyclerAdapter<cartItem,cartAdapter.ca
     public class cartHolder extends RecyclerView.ViewHolder{
         ImageView cimg;
         TextView ct1,ct2,ctQ;
+        RelativeLayout cartRel;
         public cartHolder(@NonNull View itemView) {
             super(itemView);
             cimg = (ImageView) itemView.findViewById(R.id.cartI);
             ct1 =(TextView) itemView.findViewById(R.id.cartN);
             ct2 =(TextView) itemView.findViewById(R.id.cartP);
             ctQ = (TextView) itemView.findViewById(R.id.carttextQuan);
+            cartRel = (RelativeLayout) itemView.findViewById(R.id.cartLayout);
         }
     }
 }

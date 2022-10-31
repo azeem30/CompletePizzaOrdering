@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".confirmOrder">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:id="@+id/confirmAddressView"
+            android:layout_height="wrap_content"
+            android:text="Deliver to Address: "
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:textSize="20dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="20dp"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold|italic"
+            android:textSize="20dp"
+            android:text="₹"
+            android:id="@+id/confirmOrderRupees"
+            android:textColor="@color/green"
+            android:layout_below="@id/confirmAddress"
+            android:layout_marginTop="15dp"
+            android:layout_toEndOf="@id/confirmOrderTotalCostView"
+            android:layout_marginLeft="10dp"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:textStyle="bold|italic"
+            android:textColor="@color/green"
+            android:id="@+id/confirmOrderTotalCost"
+            android:layout_below="@id/confirmAddress"
+            android:layout_marginTop="15dp"
+            android:layout_toEndOf="@id/confirmOrderRupees"
+            android:layout_marginLeft="8dp"/>
+
+
+        <TextView
+            android:id="@+id/confirmAddress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/confirmAddressView"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/brown"
+            android:textSize="20dp"
+            android:textStyle="bold|italic" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/confirmOrderTotalCostView"
+            android:text="Total Cost:"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:layout_marginLeft="10dp"
+            android:layout_below="@+id/confirmAddress"
+            android:layout_marginTop="15dp"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/confirmAddressPaymentView"
+            android:text="Payment Method"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:textSize="20dp"
+            android:layout_below="@+id/confirmOrderTotalCostView"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="30dp"
+            />
+
+        <TextView
+            android:id="@+id/cashView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/confirmAddressPaymentView"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="20dp"
+            android:text="Cash"
+            android:textColor="@color/brown"
+            android:textSize="20dp"
+            android:textStyle="bold|italic" />
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@+id/cashView"
+            android:layout_below="@+id/confirmAddressPaymentView"
+            android:layout_marginTop="15dp"
+            android:id="@+id/confirmCash"
+            android:layout_marginLeft="20dp"/>
+
+        <Button
+            android:id="@+id/confirmOrder"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/cashView"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="50dp"
+            android:background="@color/white"
+            android:text="Confirm Order"
+            android:textSize="20dp"
+            android:textColor="@color/red"
+            android:textStyle="bold|italic"
+            android:layout_marginBottom="30dp"/>
+
+
+    </RelativeLayout>
+
+</FrameLayout>

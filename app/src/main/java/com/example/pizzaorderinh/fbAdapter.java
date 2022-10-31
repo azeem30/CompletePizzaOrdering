@@ -5,10 +5,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -28,7 +30,7 @@ public class fbAdapter extends FirebaseRecyclerAdapter<menuItem,fbAdapter.fbView
         holder.fTV.setText(model.getPgName());
         holder.fPV.setText(model.getPgPrice());
         Glide.with(holder.fIV.getContext()).load(model.getPgImage()).into(holder.fIV);
-        holder.fIV.setOnClickListener(new View.OnClickListener() {
+        holder.sRel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 AppCompatActivity act2 = (AppCompatActivity) view.getContext();
@@ -50,12 +52,14 @@ public class fbAdapter extends FirebaseRecyclerAdapter<menuItem,fbAdapter.fbView
     {
         ImageView  fIV;
         TextView  fTV,fPV;
+        CardView sRel;
 
         public fbViewHolder(@NonNull View itemView) {
             super(itemView);
             fIV= (ImageView)itemView.findViewById(R.id.fImage);
             fTV=(TextView)itemView.findViewById(R.id.fText);
             fPV=(TextView) itemView.findViewById(R.id.fPrice);
+            sRel = (CardView) itemView.findViewById(R.id.sCard);
         }
     }
 }

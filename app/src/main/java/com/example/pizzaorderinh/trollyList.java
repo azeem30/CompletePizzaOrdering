@@ -6,6 +6,7 @@ import android.media.Image;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -15,6 +16,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ScrollView;
@@ -44,7 +46,6 @@ public class trollyList extends Fragment {
     FirebaseAuth fAuth = FirebaseAuth.getInstance();
     String user = fAuth.getCurrentUser().getUid();
     DatabaseReference dRef = fire.getReference().child("Cart").child(user);
-    DatabaseReference dOrd = fire.getReference().child("Orders").child(user);
     RecyclerView cartRecycler;
     cartAdapter ca;
     List priceList;
@@ -135,36 +136,29 @@ public class trollyList extends Fragment {
        checkout.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View view) {
-               dRef.addValueEventListener(new ValueEventListener() {
-                   @Override
-                   public void onDataChange(@NonNull DataSnapshot snapshot) {
-                       orderMap =  new HashMap<>();
-                       for(DataSnapshot order: snapshot.getChildren()){
-                           String oKey = order.getKey();
-                           String oImg = order.child("cpImage").getValue().toString();
-                           String oName = order.child("cpName").getValue().toString();
-                           String oQuan = order.child("quantity").getValue().toString();
-                           String perP = order.child("orderTotal").getValue().toString();
-                           orderMap.put("orderI",oImg);
-                           orderMap.put("orderN",oName);
-                           orderMap.put("orderP",perP);
-                           orderMap.put("orderQ",oQuan);
-                           orderMap.put("orderTotalCost",total);
-                           dOrd.push().setValue(orderMap);
-                           dRef.setValue(null);
-
-                       }
-                   }
-
-                   @Override
-                   public void onCancelled(@NonNull DatabaseError error) {
-
-                   }
-               });
+             AppCompatActivity confirmKaroOrder = (AppCompatActivity)  getContext();
+             confirmKaroOrder.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
+             confirmKaroOrder.getSupportFragmentManager().beginTransaction().replace(R.id.start, new confirmOrder()).addToBackStack(null).commit();
            }
        });
+
+
         return viewCart;
     }
+
+    private void sendUserToTrolly() {
+        AppCompatActivity goTrolly = (AppCompatActivity) getContext();
+        goTrolly.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        goTrolly.getSupportFragmentManager().beginTransaction().replace(R.id.start, new trollyList()).addToBackStack(null).commit();
+    }
+
+    private void sendUserToMenu() {
+        AppCompatActivity goMenu = (AppCompatActivity) getContext();
+        goMenu.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        goMenu.getSupportFragmentManager().beginTransaction().replace(R.id.start, new recFragment()).addToBackStack(null).commit();
+    }
+
+
     @Override
     public void onStart() {
         super.onStart();

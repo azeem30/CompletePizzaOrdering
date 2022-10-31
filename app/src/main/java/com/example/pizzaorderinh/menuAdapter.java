@@ -4,6 +4,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -26,7 +27,7 @@ public class menuAdapter extends FirebaseRecyclerAdapter<menuItem,menuAdapter.me
         holder.mt2.setText(model.getPgPrice());
         Glide.with(holder.mimg.getContext()).load(model.getPgImage()).into(holder.mimg);
 
-        holder.mimg.setOnClickListener(new View.OnClickListener() {
+        holder.mRel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 AppCompatActivity act = (AppCompatActivity) view.getContext();
@@ -47,12 +48,13 @@ public class menuAdapter extends FirebaseRecyclerAdapter<menuItem,menuAdapter.me
         ImageView mimg;
         TextView mt1;
         TextView mt2;
+        RelativeLayout mRel;
         public menuHolder(@NonNull View itemView) {
             super(itemView);
             mimg = (ImageView) itemView.findViewById(R.id.menuI);
             mt1 =(TextView) itemView.findViewById(R.id.menuT1);
             mt2 =(TextView) itemView.findViewById(R.id.menuT2);
-
+            mRel = (RelativeLayout) itemView.findViewById(R.id.menuRel);
         }
     }
 }

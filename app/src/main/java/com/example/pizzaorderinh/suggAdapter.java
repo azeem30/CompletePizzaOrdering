@@ -4,6 +4,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -30,7 +31,7 @@ public class suggAdapter extends FirebaseRecyclerAdapter<menuItem,suggAdapter.su
                    holder.suggestionN.setText(model.getPgName());
                    holder.suggestionP.setText(model.getPgPrice());
                    Glide.with(holder.suggestionI.getContext()).load(model.getPgImage()).into(holder.suggestionI);
-                   holder.suggestionN.setOnClickListener(new View.OnClickListener() {
+                   holder.relSugg.setOnClickListener(new View.OnClickListener() {
                        @Override
                        public void onClick(View view) {
                            AppCompatActivity actSugg = (AppCompatActivity) view.getContext();
@@ -49,11 +50,13 @@ public class suggAdapter extends FirebaseRecyclerAdapter<menuItem,suggAdapter.su
    public class suggMenuHolder extends RecyclerView.ViewHolder{
          ImageView suggestionI;
          TextView suggestionN, suggestionP;
+         RelativeLayout relSugg;
         public suggMenuHolder(@NonNull View itemView) {
             super(itemView);
             suggestionI = itemView.findViewById(R.id.suggI);
             suggestionN= itemView.findViewById(R.id.suggN);
             suggestionP = itemView.findViewById(R.id.suggP);
+            relSugg = (RelativeLayout) itemView.findViewById(R.id.suggRel);
         }
     }
 }
