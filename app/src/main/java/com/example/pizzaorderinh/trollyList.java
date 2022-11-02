@@ -146,19 +146,6 @@ public class trollyList extends Fragment {
         return viewCart;
     }
 
-    private void sendUserToTrolly() {
-        AppCompatActivity goTrolly = (AppCompatActivity) getContext();
-        goTrolly.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        goTrolly.getSupportFragmentManager().beginTransaction().replace(R.id.start, new trollyList()).addToBackStack(null).commit();
-    }
-
-    private void sendUserToMenu() {
-        AppCompatActivity goMenu = (AppCompatActivity) getContext();
-        goMenu.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        goMenu.getSupportFragmentManager().beginTransaction().replace(R.id.start, new recFragment()).addToBackStack(null).commit();
-    }
-
-
     @Override
     public void onStart() {
         super.onStart();

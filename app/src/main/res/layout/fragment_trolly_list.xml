@@ -27,7 +27,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/cartListText"
             android:textSize="24dp"
-            android:textColor="@color/black"
+            android:textColor="@color/blue"
             android:textStyle="bold|italic"
             android:layout_toRightOf="@+id/cartListLogo"
             android:layout_marginLeft="20dp"

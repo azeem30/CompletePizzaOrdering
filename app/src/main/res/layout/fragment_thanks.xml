@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/frameThanks"
+    android:background="@color/green"
+    tools:context=".Thanks">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:layout_width="50dp"
+            android:id="@+id/thanksI"
+            android:layout_height="50dp"
+            android:src="@drawable/ic_thanks"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="270dp" />
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Thanks for Ordering!"
+    android:textSize="24dp"
+    android:id="@+id/thanksT"
+    android:textStyle="bold"
+    android:gravity="center"
+    android:layout_below="@+id/thanksI"
+    android:textColor="@color/white"
+    android:layout_centerHorizontal="true"
+    android:layout_marginTop="10dp" />
+    </RelativeLayout>
+</FrameLayout>

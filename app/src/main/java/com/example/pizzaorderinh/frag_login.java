@@ -138,6 +138,6 @@ public class frag_login extends Fragment {
     private void sendUsertonextactivity2() {
         AppCompatActivity menuJao = (AppCompatActivity) getContext();
         menuJao.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        menuJao.getSupportFragmentManager().beginTransaction().replace(R.id.start, new recFragment()).addToBackStack(null).commit();
+        menuJao.getSupportFragmentManager().beginTransaction().replace(R.id.start, new homeScreen()).addToBackStack(null).commit();
     }
 }

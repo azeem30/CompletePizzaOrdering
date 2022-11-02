@@ -1,10 +1,12 @@
 package com.example.pizzaorderinh;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Paint;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -22,6 +24,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.bumptech.glide.load.resource.bitmap.RecyclableBufferedInputStream;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
@@ -77,6 +80,9 @@ DatabaseReference db = fb.getReference().child("menuPizzas");
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_rec, container, false);
+        @SuppressLint({"MissingInflatedId", "LocalSuppress"})
+        TextView menuText = view.findViewById(R.id.menuText);
+        menuText.setPaintFlags(menuText.getPaintFlags()| Paint.UNDERLINE_TEXT_FLAG);
         mRec=(RecyclerView) view.findViewById(R.id.menuRec);
         GridLayoutManager grm = new GridLayoutManager(getContext(),2);
         mRec.setLayoutManager(grm);
@@ -107,11 +113,17 @@ DatabaseReference db = fb.getReference().child("menuPizzas");
         inflater.inflate(R.menu.menu_cart,menu);
         inflater.inflate(R.menu.account,menu);
         inflater.inflate(R.menu.your_orders,menu);
+        inflater.inflate(R.menu.home,menu);
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
+        if(id==R.id.homeMenu){
+            AppCompatActivity gotoHome = (AppCompatActivity) getContext();
+            gotoHome.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
+            gotoHome.getSupportFragmentManager().beginTransaction().replace(R.id.start,new homeScreen()).addToBackStack(null).commit();
+        }
         if(id==R.id.menu_orders){
             AppCompatActivity gotoYourOrders = (AppCompatActivity) getContext();
             gotoYourOrders.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);

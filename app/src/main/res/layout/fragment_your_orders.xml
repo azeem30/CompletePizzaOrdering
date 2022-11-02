@@ -12,22 +12,31 @@
 <RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
+   <ImageView
+       android:layout_width="50dp"
+       android:layout_height="50dp"
+       android:id="@+id/yourOrdersImage"
+       android:src="@drawable/ic_bag"
+       android:layout_marginTop="10dp"
+       android:layout_marginLeft="10dp"
+       />
    <TextView
        android:layout_width="wrap_content"
        android:layout_height="wrap_content"
        android:text="Your Orders"
        android:id="@+id/yourOrderLabelText"
        android:textColor="@color/blue"
+       android:layout_toEndOf="@+id/yourOrdersImage"
        android:textSize="24dp"
        android:textStyle="bold|italic"
-       android:layout_marginLeft="20dp"
-       android:layout_marginTop="10dp"/>
+       android:layout_marginLeft="15dp"
+       android:layout_marginTop="15dp"/>
    <androidx.recyclerview.widget.RecyclerView
        android:layout_width="match_parent"
        android:layout_height="wrap_content"
        android:id="@+id/orderRec"
-       android:layout_below="@+id/yourOrderLabelText"
-       android:layout_marginTop="60dp"/>
+       android:layout_below="@+id/yourOrdersImage"
+       android:layout_marginTop="40dp"/>
 
    <Button
        android:id="@+id/cancOrder"
