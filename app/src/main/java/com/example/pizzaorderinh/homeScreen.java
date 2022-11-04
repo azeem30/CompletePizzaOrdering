@@ -39,9 +39,7 @@ public class homeScreen extends Fragment {
     FirebaseDatabase fbHome = FirebaseDatabase.getInstance();
     DatabaseReference dbHome = fbHome.getReference().child("menuPizzas");
     homeAdapter ha;
-    public homeScreen() {
-        // Required empty public constructor
-    }
+    public homeScreen() {}
 
     public static homeScreen newInstance(String param1, String param2) {
         homeScreen fragment = new homeScreen();
@@ -64,7 +62,6 @@ public class homeScreen extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View homeView =inflater.inflate(R.layout.fragment_home_screen, container, false);
         RecyclerView hRec = (RecyclerView) homeView.findViewById(R.id.homeRec);
         @SuppressLint({"MissingInflatedId", "LocalSuppress"}) ScrollView hscr = (ScrollView) homeView.findViewById(R.id.homeScroll1);

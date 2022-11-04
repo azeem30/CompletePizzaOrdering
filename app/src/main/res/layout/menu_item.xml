@@ -11,6 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/menuRel"
+        android:background="@color/black"
         android:padding="15dp">
         <ImageView
             android:layout_width="100dp"
@@ -21,7 +22,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/menuT1"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:layout_centerHorizontal="true"
             android:textSize="20dp"
             android:textStyle="bold|italic"
@@ -36,7 +37,7 @@
             android:layout_marginTop="10dp"
             android:layout_marginRight="6dp"
             android:textStyle="bold|italic"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:text="₹"
             android:textSize="20dp"/>
 
@@ -45,7 +46,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/menuT2"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
 android:layout_centerHorizontal="true"
             android:textSize="20dp"
             android:textStyle="bold|italic"

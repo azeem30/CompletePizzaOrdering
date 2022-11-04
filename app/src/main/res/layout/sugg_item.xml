@@ -7,6 +7,7 @@
     app:cardCornerRadius="20dp">
     <RelativeLayout
         android:layout_width="wrap_content"
+        android:background="@color/black"
         android:layout_height="wrap_content"
         android:id="@+id/suggRel">
         <ImageView
@@ -23,7 +24,7 @@
             android:id="@+id/suggN"
             android:layout_below="@+id/suggI"
 
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textSize="20dp"
             android:textStyle="bold"
             android:layout_marginLeft="20dp"
@@ -34,7 +35,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/suggRupees"
             android:text="₹"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textSize="20dp"
             android:textStyle="bold|italic"
             android:layout_below="@+id/suggN"
@@ -49,7 +50,7 @@
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:layout_marginTop="20dp"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textSize="20dp"
             android:textStyle="bold|italic"
             android:layout_marginBottom="20dp"/>
